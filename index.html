@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <h1>Image Gallery</h1>
+    <div class="gallery">
+        <img src="images/river_0_global.jpg" alt="Image 1" class="gallery-image" onclick="openFullscreen(this)">
+        <img src="images/river_1_global.jpg" alt="Image 2" class="gallery-image" onclick="openFullscreen(this)">
+        <img src="images/river_5_global.jpg" alt="Image 3" class="gallery-image" onclick="openFullscreen(this)">
+        <!-- Add more images as needed -->
+    </div>
+
+    <div id="fullscreenModal" class="modal">
+        <span class="close" onclick="closeFullscreen()">×</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

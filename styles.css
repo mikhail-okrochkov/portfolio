@@ -1,0 +1,103 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #222;
+  color: #fff;
+}
+
+h1 {
+  margin-top: 20px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* 3 columns of equal width */
+  gap: 16px;
+  /* Space between images */
+  padding: 16px;
+  justify-items: center;
+  /* Center the images */
+}
+
+/* Gallery images */
+.gallery-image {
+  width: 100%;
+  /* Ensure the images take up the full width of their container */
+  height: auto;
+  /* Maintain aspect ratio */
+  max-width: 100%;
+  /* Prevent images from overflowing */
+  border-radius: 8px;
+  /* Optional: rounded corners for the images */
+  object-fit: cover;
+  /* Ensure the image covers the area without distorting */
+}
+
+/* Make sure the layout is responsive */
+@media (max-width: 1024px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 columns for medium-sized screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: 1fr;
+    /* 1 column for small screens */
+  }
+}
+
+.gallery-image:hover {
+  transform: scale(1.1);
+  /* Slight zoom effect when hovering */
+}
+
+/* Full-screen modal container */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  /* Black background with transparency */
+  overflow: auto;
+  /* Enable scrolling if necessary */
+  padding: 60px;
+}
+
+/* Modal content (the image) */
+.modal-content {
+  max-width: 90%;
+  /* Allow the image to be up to 90% of the window width */
+  max-height: 90%;
+  /* Keep the image within the window height */
+  margin: auto;
+  /* Center the image */
+  display: block;
+}
+
+/* Close button styling */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
