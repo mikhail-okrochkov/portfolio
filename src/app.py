@@ -174,4 +174,4 @@ def update_map(selected_map):
     return fig, top_5_container, bot_5_container
 
 if __name__ == "__main__":
-    app.run_server(debug=True, port=8052)
+    app.run_server(host="0.0.0.0", debug=True, port=8052)
