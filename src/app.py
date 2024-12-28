@@ -3,6 +3,7 @@ import dash_bootstrap_components as dbc
 import plotly.express as px
 import plotly.colors as pc
 import geopandas as gpd
+import numpy as np
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
@@ -25,7 +26,7 @@ column_mapping = {
     "Non_Family_100k": "Percent of non-family households that earn over 100k",
     "Median_Rent": "Median Rent",
     "Median_1BR_Rent": "Median 1 Bedroom Rent",
-    "Fraction_Rent_Salary": "Fraction of Salary Spent on Rent"
+    "Percent_Rent_Salary": "Percent of Salary Spent on Rent"
 }
 
 app.layout = html.Div(
@@ -48,7 +49,7 @@ app.layout = html.Div(
                              {"label": "Percent of non-family households that earn over 100k", "value": "Non_Family_100k"},
                              {"label": "Median Rent", "value": "Median_Rent"},
                              {"label": "Median 1 Bedroom Rent", "value": "Median_1BR_Rent"},
-                             {"label": "Fraction of Salary Spent on Rent", "value": "Fraction_Rent_Salary"},],
+                             {"label": "Percent of Salary Spent on Rent", "value": "Percent_Rent_Salary"},],
                     value="Median_Household",
                     clearable=False,
                     maxHeight=500,
@@ -127,11 +128,11 @@ def update_map(selected_map):
         },
         labels={column_name: selected_map},
     )
-    if selected_map == 'Fraction_Rent_Salary':  
+    if selected_map == 'Percent_Rent_Salary':  
         fig.update_layout(
             coloraxis=dict(
                 cmin=0,  # Minimum value for the color axis
-                cmax=0.35  # Maximum value for the color axis
+                cmax=35  # Maximum value for the color axis
             )
         )
 
@@ -141,7 +142,7 @@ def update_map(selected_map):
         top_5_rows.append(
             dbc.Row([
                 dbc.Col(html.Div(row['NAME']), width=6),
-                dbc.Col(html.Div(f"{row[selected_map]:,}"), width=6)
+                dbc.Col(html.Div(f"{np.round(row[selected_map], decimals=1)}"), width=6)
             ], className="mb-2")
         )
     
@@ -158,7 +159,7 @@ def update_map(selected_map):
         bot_5_rows.append(
             dbc.Row([
                 dbc.Col(html.Div(row['NAME']), width=6),
-                dbc.Col(html.Div(f"{row[selected_map]:,}"), width=6)
+                dbc.Col(html.Div(f"{np.round(row[selected_map], decimals=1)}"), width=6)
             ], className="mb-2")
         )
     
