@@ -201,8 +201,12 @@ def update_map(selected_map, entity_level):
             )
         )
 
+    table_label = "Counties" if entity_level == "county" else "States"
+
     # Wrap the rows in a container
-    top_5_container = html.Div(children=[html.H5(f"Top 5 Counties by {column_name}", className="mb-3"), *top_5_rows])
+    top_5_container = html.Div(
+        children=[html.H5(f"Top 5 {table_label} by {column_name}", className="mb-3"), *top_5_rows]
+    )
 
     bot_5_rows = []
     for _, row in bot_5.iterrows():
@@ -217,7 +221,9 @@ def update_map(selected_map, entity_level):
         )
 
     # Wrap the rows in a container
-    bot_5_container = html.Div(children=[html.H5(f"Bottom 5 Counties by {column_name}", className="mb-3"), *bot_5_rows])
+    bot_5_container = html.Div(
+        children=[html.H5(f"Bottom 5 {table_label} by {column_name}", className="mb-3"), *bot_5_rows]
+    )
 
     return fig, top_5_container, bot_5_container
 
